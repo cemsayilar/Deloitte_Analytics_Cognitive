@@ -178,3 +178,4 @@ plt.show()
 
 ```
 
+![image](https://user-images.githubusercontent.com/96774646/226745272-24a92f78-39b9-432c-beb4-46c89432c8d3.png)
