@@ -2,7 +2,7 @@
 ## I create this readme file as a illustrative and elegant presentation. I enjoyed to prepare it, I hope you would love it too.
 Sincerely yours,
 B. Cem Sayilar
-## SQL Querys
+# Question 1 - SQL Querys
 
 ### a) There are four types of joins in SQL:
 ```sql
