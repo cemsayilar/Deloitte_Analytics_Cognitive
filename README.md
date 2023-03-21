@@ -2,7 +2,7 @@
 
 ## SQL Querys
 ```sql
-* a)
+/* a)
 /*There are four types of joins in SQL:
 /*INNER JOIN: returns only the matching rows from both tables
 /* a) There are four types of joins in SQL:
