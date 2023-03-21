@@ -1,6 +1,6 @@
 # Question 1 - SQL
 ## I create this readme file as a illustrative and elegant presentation. I enjoyed to prepare it, I hope you would love it too.
-Sincierly
+Sincerely yours,
 B. Cem Sayilar
 ## SQL Querys
 
