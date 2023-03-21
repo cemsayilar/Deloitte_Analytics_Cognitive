@@ -3,6 +3,7 @@ Sincerely yours,
 B. Cem Sayilar
 
 
+
 # Question 1 - SQL Querys
 ### a) There are four types of joins in SQL:
 ```sql
