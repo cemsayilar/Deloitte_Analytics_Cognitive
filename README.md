@@ -1,8 +1,9 @@
 ## I create this readme file as a illustrative and elegant presentation. I enjoyed to prepare it, I hope you would love it too.
 Sincerely yours,
 B. Cem Sayilar
-# Question 1 - SQL Querys
 
+
+# Question 1 - SQL Querys
 ### a) There are four types of joins in SQL:
 ```sql
 /*INNER JOIN: returns only the matching rows from both tables
@@ -12,7 +13,7 @@ B. Cem Sayilar
 /*FULL OUTER JOIN: returns all rows from both tables, with NULL values for non-matching rows.
 ```
 
-### b) SQL to display all the workers of the Company:
+### b) SQL query to display all the workers of the Company:
 ```sql
 SELECT EMPLOYEES.EMP_ID, EMPLOYEES.FIRST_NAME, EMPLOYEES.LAST_NAME, EMPLOYEES.JOB_ROLE, EMPLOYEES.START_DATE, DEVELOPERS.DEPARTMENT, DEVELOPERS.CONTRACT_TYPE, DEVELOPERS.SALARY
 FROM EMPLOYEES
@@ -20,7 +21,7 @@ LEFT JOIN DEVELOPERS
 ON EMPLOYEES.EMP_ID = DEVELOPERS.EMP_ID
 ```
 
-### c) SQL to query the names and the Start Date of the developers those have FULL_TIME contract:
+### c) SQL query for names and the start dates of the developers those have full time contract:
 ```sql
 SELECT FIRST_NAME, LAST_NAME, START_DATE
 FROM EMPLOYEES
@@ -29,19 +30,19 @@ ON EMPLOYEES.EMP_ID = DEVELOPERS.EMP_ID
 WHERE CONTRACT_TYPE = 'FULL_TIME' AND JOB_ROLE = 'Developer'
 ```
 
-### d) SQL to display number employees work in each job role:
+### d) SQL query to display number employees work in each job role:
 ```sql
 SELECT JOB_ROLE, COUNT(*)
 FROM EMPLOYEES
 GROUP BY JOB_ROLE
 ```
 
-### e) SQL to display Number of new employees per Department Name by year:
+### e) SQL query to display number of new employees per department name by year:
 ```sql
 /* Find my solution and visualization in python_case file.
 ```
 
-### f) SQL to display the departments whose average salary is equal or higher than 2000$:
+### f) SQL query to display the departments those average salary equal or higher then 2000$:
 ```sql
 SELECT DEPARTMENT_NAME, AVG(SALARY) AS AVERAGE_SALARY
 FROM DEVELOPERS
@@ -51,6 +52,9 @@ AS DEP ON DEVELOPERS.DEPARTMENT = DEP.ID
 GROUP BY DEPARTMENT_NAME
 HAVING AVG(SALARY) >= 2000
 ```
+
+
+
 
 # Question 2 - Python
 ``` python
@@ -177,5 +181,15 @@ plt.legend()
 plt.show()
 
 ```
-
+### matplot lib plot in question 5
 ![image](https://user-images.githubusercontent.com/96774646/226745272-24a92f78-39b9-432c-beb4-46c89432c8d3.png)
+
+
+
+
+
+
+
+``` python
+```
+
