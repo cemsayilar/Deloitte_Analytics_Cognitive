@@ -6,6 +6,7 @@ B. Cem Sayilar
 
 
 # Question 1 - SQL Querys
+Note: Question 1 section g is in Question_1.py file.
 ### a) There are four types of joins in SQL:
 ```sql
 /*INNER JOIN: returns only the matching rows from both tables
