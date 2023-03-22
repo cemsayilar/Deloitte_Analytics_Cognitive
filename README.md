@@ -1,5 +1,5 @@
-## I create this readme file as a illustrative and elegant presentation. You can find simple versions of each code in repository.
-## I enjoyed to prepare it, I hope you would love it too.
+I create this readme file as a illustrative and elegant presentation. You can find simple versions of each code in repository.
+I enjoyed to prepare it, I hope you would love it too.
 Sincerely yours,
 B. Cem Sayilar
 
@@ -226,8 +226,8 @@ X, y = make_classification(n_samples=10000, weights=(0.99, 0.01), random_state=4
 ```
 
 
-### Explanetory Data Analysis, in an unconventional way.
-### Before I start, make_classification function has some parameters that I should know;
+Explanetory Data Analysis, in an unconventional way.
+Before I start, make_classification function has some parameters that I should know;
 ```python
 #     n_samples=100 How many samples will be in the dataset? In my case, problem says 1000.
 #     n_features=20, It's default, that means I have 20 lists in X.
@@ -251,11 +251,11 @@ case_df['target'] = y
 ```
 
 
-### Data is highly inbalanced. To solve this, I can make undersampling or oversampling.
-### Then, maybe I can apply PCA to see if it's helps or not.
-### I will use SMOTE, an oversampling method used in statistics. I choose SMOTE (oversample) over
-### the undersampling because when minorty class has contains valuable info and the difference between
-### samples huge, like my case, undersampling can lead to a serious info loss.
+Data is highly inbalanced. To solve this, I can make undersampling or oversampling.
+Then, maybe I can apply PCA to see if it's helps or not.
+I will use SMOTE, an oversampling method used in statistics. I choose SMOTE (oversample) over
+the undersampling because when minorty class has contains valuable info and the difference between
+samples huge, like my case, undersampling can lead to a serious info loss.
 ```python
 # Split data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -292,10 +292,10 @@ print("Classification Report (RUS Data):\n", classification_report(y_test, y_pre
 
 
 ## Cost-sensitive learning using XGBoost
-### By setting scale_pos_weight to the inverse of the class imbalance ratio, I essentially telling the algorithm
-### to pay more attention to the minority class during training and to try to reduce the number of
-### false negatives. This can result in improved performance on the minority class, which is often
-### the goal in imbalanced classification problems.
+By setting scale_pos_weight to the inverse of the class imbalance ratio, I essentially telling the algorithm
+to pay more attention to the minority class during training and to try to reduce the number of
+false negatives. This can result in improved performance on the minority class, which is often
+the goal in imbalanced classification problems.
 ```python
 import xgboost as xgb
 from sklearn.metrics import roc_auc_score
@@ -303,11 +303,11 @@ from sklearn.metrics import roc_auc_score
 
 
 ## Choosing the right loss function for XGBoost Classifier
-### Because ROC AUC is calculated based on TPR and FPR, it is less likely to be biased towards the majority class than
-### other metrics like accuracy or precision. This is because these metrics do not take into account the imbalance in the
-### dataset, and may give the appearance of high performance if the majority class is well-classified while
-### the minority class is poorly classified.
-### So, I will build model with auc and f1 score as loss functions.
+Because ROC AUC is calculated based on TPR and FPR, it is less likely to be biased towards the majority class than
+other metrics like accuracy or precision. This is because these metrics do not take into account the imbalance in the
+dataset, and may give the appearance of high performance if the majority class is well-classified while
+the minority class is poorly classified.
+So, I will build model with auc and f1 score as loss functions.
 ```python
 model_xgb = XGBClassifier(scale_pos_weight=(1/0.01), random_state=42)
 model_xgb.fit(X_train, y_train)
@@ -326,11 +326,11 @@ print("Classification Report (Cost-Sensitive Learning):\n", classification_repor
  To measure the performance other two loss function, I used 'rmsle' (root mean square log error)
  as 'eval_metric'.
 
-### rmsle as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.6012
-### rmsle as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.7195
+rmsle as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.6012
+rmsle as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.7195
+roc_auc as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.6012
+roc_auc as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.7195
 
-### roc_auc as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.6012
-### roc_auc as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.7195
 ```python
 
 def hyp_op(X, y, model_name, cv=3, scoring="roc_auc"):
@@ -433,6 +433,7 @@ acc_lr = accuracy_score(y_test, y_pred_lr)
 ```
 
 
+
 # Extract
  1- I examin the data sets, due to fabricated data and I am sure there is no
     nan values, I just examin outliers and the metrics that I build the dataset on.
@@ -459,6 +460,5 @@ acc_lr = accuracy_score(y_test, y_pred_lr)
     my hyper_parameter process knowladge. For further implementations, I can create a pipeline for this project,
     export as .pkl file, make deployment with help of ML tools (such as MLflow) then observe on Airflow or Prefect
     enviroment to consistent improvement process.
-```
 
 
