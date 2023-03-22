@@ -1,4 +1,5 @@
-## I create this readme file as a illustrative and elegant presentation. I enjoyed to prepare it, I hope you would love it too.
+## I create this readme file as a illustrative and elegant presentation. You can find simple versions of each code in repository.
+## I enjoyed to prepare it, I hope you would love it too.
 Sincerely yours,
 B. Cem Sayilar
 
@@ -222,9 +223,12 @@ X, y = make_classification(n_samples=10000, weights=(0.99, 0.01), random_state=4
 # 3. Tune hyperparameters to optimize the selected metric
 # 4. Explain the results
 ################################### Question Tasks ##############################################
+```
 
-# Explanetory Data Analysis, in an unconventional way.
-# Before I start, make_classification function has some parameters that I should know;
+
+### Explanetory Data Analysis, in an unconventional way.
+### Before I start, make_classification function has some parameters that I should know;
+```python
 #     n_samples=100 How many samples will be in the dataset? In my case, problem says 1000.
 #     n_features=20, It's default, that means I have 20 lists in X.
 #     n_informative=2, It's complicated. But it effects how some features created.
@@ -244,12 +248,15 @@ X, y = make_classification(n_samples=10000, weights=(0.99, 0.01), random_state=4
 
 case_df = pd.DataFrame(X) # I struggled to turn this array to dataframe. It turned out so easy.
 case_df['target'] = y
-# Data is highly inbalanced. To solve this, I can make undersampling or oversampling.
-# Then, maybe I can apply PCA to see if it's helps or not.
-# I will use SMOTE, an oversampling method used in statistics. I choose SMOTE (oversample) over
-# the undersampling because when minorty class has contains valuable info and the difference between
-# samples huge, like my case, undersampling can lead to a serious info loss.
+```
 
+
+### Data is highly inbalanced. To solve this, I can make undersampling or oversampling.
+### Then, maybe I can apply PCA to see if it's helps or not.
+### I will use SMOTE, an oversampling method used in statistics. I choose SMOTE (oversample) over
+### the undersampling because when minorty class has contains valuable info and the difference between
+### samples huge, like my case, undersampling can lead to a serious info loss.
+```python
 # Split data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -281,45 +288,51 @@ model.fit(X_train_rus, y_train_rus)
 y_pred = model.predict(X_test)
 print("Confusion Matrix (RUS Data):\n", confusion_matrix(y_test, y_pred))
 print("Classification Report (RUS Data):\n", classification_report(y_test, y_pred))
+```
 
-# Cost-sensitive learning using XGBoost
-# By setting scale_pos_weight to the inverse of the class imbalance ratio, I essentially telling the algorithm
-# to pay more attention to the minority class during training and to try to reduce the number of
-# false negatives. This can result in improved performance on the minority class, which is often
-# the goal in imbalanced classification problems.
+
+## Cost-sensitive learning using XGBoost
+### By setting scale_pos_weight to the inverse of the class imbalance ratio, I essentially telling the algorithm
+### to pay more attention to the minority class during training and to try to reduce the number of
+### false negatives. This can result in improved performance on the minority class, which is often
+### the goal in imbalanced classification problems.
+```python
 import xgboost as xgb
 from sklearn.metrics import roc_auc_score
+```
 
-# Choosing the right loss function for XGBoost Classifier
-# Because ROC AUC is calculated based on TPR and FPR, it is less likely to be biased towards the majority class than
-# other metrics like accuracy or precision. This is because these metrics do not take into account the imbalance in the
-# dataset, and may give the appearance of high performance if the majority class is well-classified while
-# the minority class is poorly classified.
-# So, I will build model with auc and f1 score as loss functions.
 
+## Choosing the right loss function for XGBoost Classifier
+### Because ROC AUC is calculated based on TPR and FPR, it is less likely to be biased towards the majority class than
+### other metrics like accuracy or precision. This is because these metrics do not take into account the imbalance in the
+### dataset, and may give the appearance of high performance if the majority class is well-classified while
+### the minority class is poorly classified.
+### So, I will build model with auc and f1 score as loss functions.
+```python
 model_xgb = XGBClassifier(scale_pos_weight=(1/0.01), random_state=42)
 model_xgb.fit(X_train, y_train)
 y_pred = model_xgb.predict(X_test)
 print("Confusion Matrix (Cost-Sensitive Learning):\n", confusion_matrix(y_test, y_pred))
 print("Classification Report (Cost-Sensitive Learning):\n", classification_report(y_test, y_pred))
-
-# I used 3 different built-in objective function (loss function) under the 'objective' parameter in XGBoost:
-# 1- binary:logistic
-# 2- binary:logitraw
-# 3- binary:hinge
-# And used 'eval_metric' parameter to measure performance of these functions as 'auc'
-# For use 'auc' as metric, objective function must be set as 'binary:logistic'.
-# To measure the performance other two loss function, I used 'rmsle' (root mean square log error)
-# as 'eval_metric'.
-
-# rmsle as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.6012
-# rmsle as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.7195
-
-# roc_auc as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.6012
-# roc_auc as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.7195
+```
 
 
-# 'rmsle' (root mean square log error) as metric, binary:logitraw as loss function - after hyperparameter opt:
+ I used 3 different built-in objective function (loss function) under the 'objective' parameter in XGBoost:
+ 1- binary:logistic
+ 2- binary:logitraw
+ 3- binary:hinge
+ And used 'eval_metric' parameter to measure performance of these functions as 'auc'
+ For use 'auc' as metric, objective function must be set as 'binary:logistic'.
+ To measure the performance other two loss function, I used 'rmsle' (root mean square log error)
+ as 'eval_metric'.
+
+### rmsle as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.6012
+### rmsle as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.7195
+
+### roc_auc as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.6012
+### roc_auc as metric, binary:logistic reg as loss function - before hyperparameter opt: 0.7195
+```python
+
 def hyp_op(X, y, model_name, cv=3, scoring="roc_auc"):
     from sklearn.tree import DecisionTreeClassifier
     from sklearn.neighbors import KNeighborsClassifier
@@ -417,32 +430,35 @@ acc_xgb = accuracy_score(y_test, y_pred_xgb)
 opt_lr = opt_LR.fit(X_train, y_train)
 y_pred_lr  = opt_LR.predict(X_test)
 acc_lr = accuracy_score(y_test, y_pred_lr)
-
-## Extract
-# 1- I examin the data sets, due to fabricated data and I am sure there is no
-#    nan values, I just examin outliers and the metrics that I build the dataset on.
-#    These are give me enough insights on data.
-
-# 2- Then first think to do is deal with imbalanced distribution of data. I done this
-#    with imbalanced library, usin SMOTE method. I look into under and oversampling
-#    methods and their use cases then decide to apply an oversampling method.
-
-# 3- Then I build my ml model; xgboost that its commonly used and have proven performance
-#    in classification.
-#    3a- I used a trick to say to the model that minorty class is more important to me,
-#        which cause to model more robust to the False Negative. This perspective can change according to the project needs.
-#        I mean; if project requaires to be more sensitive on False Positives, which means miss tread a transaction as a FRAUD
-#        lead serious problem.
-#    3b- On the other hand, I want to observe positive (FRAUD transactions) more accurate, which means robust the algorithm
-#        on False Negative values rather then False Positive outcomes. Like I said, it depends on project goals.
-#    3c- I used my own function to conduct hyper_parameter tuning
-#        more smootly that I can determine model names and parameters individually to present outcomes.
-
-## Conclusion
-#    In my point of view, simple logistic regression can outperform a tree based method, which is did.
-#    But the goal of this task is to represent my data understanding and model selection capablities, as well as
-#    my hyper_parameter process knowladge. For further implementations, I can create a pipeline for this project,
-#    export as .pkl file, make deployment with help of ML tools (such as MLflow) then observe on Airflow or Prefect
-#    enviroment to consistent improvement process.
 ```
+
+
+# Extract
+ 1- I examin the data sets, due to fabricated data and I am sure there is no
+    nan values, I just examin outliers and the metrics that I build the dataset on.
+    These are give me enough insights on data.
+
+ 2- Then first think to do is deal with imbalanced distribution of data. I done this
+    with imbalanced library, usin SMOTE method. I look into under and oversampling
+    methods and their use cases then decide to apply an oversampling method.
+
+ 3- Then I build my ml model; xgboost that its commonly used and have proven performance
+    in classification.
+    3a- I used a trick to say to the model that minorty class is more important to me,
+        which cause to model more robust to the False Negative. This perspective can change according to the project needs.
+        I mean; if project requaires to be more sensitive on False Positives, which means miss tread a transaction as a FRAUD
+        lead serious problem.
+    3b- On the other hand, I want to observe positive (FRAUD transactions) more accurate, which means robust the algorithm
+        on False Negative values rather then False Positive outcomes. Like I said, it depends on project goals.
+    3c- I used my own function to conduct hyper_parameter tuning
+        more smootly that I can determine model names and parameters individually to present outcomes.
+
+# Conclusion
+    In my point of view, simple logistic regression can outperform a tree based method, which is did.
+    But the goal of this task is to represent my data understanding and model selection capablities, as well as
+    my hyper_parameter process knowladge. For further implementations, I can create a pipeline for this project,
+    export as .pkl file, make deployment with help of ML tools (such as MLflow) then observe on Airflow or Prefect
+    enviroment to consistent improvement process.
+```
+
 
