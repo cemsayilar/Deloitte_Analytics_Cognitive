@@ -435,30 +435,29 @@ acc_lr = accuracy_score(y_test, y_pred_lr)
 
 
 # Extract
- 1- I examin the data sets, due to fabricated data and I am sure there is no
-    nan values, I just examin outliers and the metrics that I build the dataset on.
-    These are give me enough insights on data.
-
- 2- Then first think to do is deal with imbalanced distribution of data. I done this
-    with imbalanced library, usin SMOTE method. I look into under and oversampling
-    methods and their use cases then decide to apply an oversampling method.
-
- 3- Then I build my ml model; xgboost that its commonly used and have proven performance
-    in classification.
-    3a- I used a trick to say to the model that minorty class is more important to me,
-        which cause to model more robust to the False Negative. This perspective can change according to the project needs.
-        I mean; if project requaires to be more sensitive on False Positives, which means miss tread a transaction as a FRAUD
-        lead serious problem.
+1- I examin the data sets, due to fabricated data and I am sure there is no
+   nan values, I just examin outliers and the metrics that I build the dataset on.
+   These are give me enough insights on data.
+2- Then first think to do is deal with imbalanced distribution of data. I done this
+   with imbalanced library, usin SMOTE method. I look into under and oversampling
+   methods and their use cases then decide to apply an oversampling method.
+3- Then I build my ml model; xgboost that its commonly used and have proven performance
+   in classification.
+   3a- I used a trick to say to the model that minorty class is more important to me,
+       which cause to model more robust to the False Negative. This perspective can change according to the project needs.
+       I mean; if project requaires to be more sensitive on False Positives, which means miss tread a transaction as a FRAUD
+       lead serious problem.
     3b- On the other hand, I want to observe positive (FRAUD transactions) more accurate, which means robust the algorithm
         on False Negative values rather then False Positive outcomes. Like I said, it depends on project goals.
     3c- I used my own function to conduct hyper_parameter tuning
         more smootly that I can determine model names and parameters individually to present outcomes.
 
 # Conclusion
-    In my point of view, simple logistic regression can outperform a tree based method, which is did.
-    But the goal of this task is to represent my data understanding and model selection capablities, as well as
-    my hyper_parameter process knowladge. For further implementations, I can create a pipeline for this project,
-    export as .pkl file, make deployment with help of ML tools (such as MLflow) then observe on Airflow or Prefect
-    enviroment to consistent improvement process.
+In my point of view, simple logistic regression can outperform a tree based method, which is did.
+But the goal of this task is to represent my data understanding and model selection capablities, as well as
+my hyper_parameter process knowladge. For further implementations, I can create a pipeline for this project,
+export as .pkl file, make deployment with help of ML tools (such as MLflow) then observe on Airflow or Prefect
+enviroment to consistent improvement process.
+
 
 
