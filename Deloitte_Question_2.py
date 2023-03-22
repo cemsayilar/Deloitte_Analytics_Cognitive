@@ -27,14 +27,6 @@ sd = 5
 np.random.seed(100)
 e = np.random.normal(mn,sd,N)
 y = y + e
-################################### Case Data / 1 ##########################################
-################################### Case Tasks / 1 ##########################################
-# 1. Fit a tree based model (e.g. decision tree, random forest, gradient boosting, etc.)
-# 2. Fit a non-tree based model (e.g. SVM, Ridge, Lasso, Elastic Net, etc.)
-# 3. Predict x=100 with both models
-# 4. Which model is able to predict more correctly? Why? Explain the predictions of both models.
-# 5. [OPTIONAL] Visualize the predictions from x=1 to 100 with 1 increment
-################################### Case Tasks ##########################################
 
 # Creating Dataframe
 case_df = pd.DataFrame(columns= ['x_values', 'y_values'])
@@ -74,12 +66,6 @@ for model_name, pred in zip(tree_model_names+non_tree_model_names, predictions):
 print(f"Random Forest Prediction: {rf_pred}")
 print(f"Ridge Prediction: {ridge_pred}")
 
-# Non-tree based linear models outperform tree based models.
-# Since I don't have the actual value of y for x=100, cannot say which model predicts more accurately.
-# But, ussualy, in a richer and more complex datasets, I excpect higher training performance because
-# relationship between x and y in this case is nonlinear, and tree based models are better for capturing nonlinear
-# relationships compared to linear models like Ridge, or Linear Regression based model. (LR)
-# I can observe this situation in graph.
 
 
 
